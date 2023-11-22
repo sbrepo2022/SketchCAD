@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>theme.qss</file>
+        <file>resources/icons/close.png</file>
+        <file>resources/icons/open.png</file>
+        <file>resources/icons/save.png</file>
+        <file>resources/icons/redo.png</file>
+        <file>resources/icons/undo.png</file>
+        <file>resources/icons/new.png</file>
+        <file>resources/icons/save_as.png</file>
+        <file>resources/icons/floor_plan.png</file>
+    </qresource>
+</RCC>
