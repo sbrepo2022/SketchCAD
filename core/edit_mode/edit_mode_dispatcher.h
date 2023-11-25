@@ -21,6 +21,7 @@ private:
 
 public:
     EditModeDispatcher();
+    std::unordered_map<ID, std::shared_ptr<EditModeInfo>> getLoadedEditModesInfo();
 
     std::shared_ptr<AbstractEditMode> getEditMode(ID id);
 

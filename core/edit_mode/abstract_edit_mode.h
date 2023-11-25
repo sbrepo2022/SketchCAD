@@ -19,7 +19,7 @@ class CORE_EXPORT AbstractEditMode : public QObject, public IdCounterT<AbstractE
 public:
     virtual ~AbstractEditMode() = default;
 
-    virtual EditModeInfo* getEditModeInfo() = 0;
+    virtual std::shared_ptr<EditModeInfo> getEditModeInfo() = 0;
 
 
 public slots:

@@ -10,18 +10,24 @@
 #include <QWidget>
 #include <memory>
 
+class AbstractPrimitive;
+
 class CORE_EXPORT SelectableModelComponent : public QObject, public SketchCADPluginInfoContainer
 {
     Q_OBJECT
 
+protected:
+    QPointer<QWidget> component_widget;
+    std::weak_ptr<AbstractPrimitive> linked_primitive;
+
+
 public:
-    explicit SelectableModelComponent(QObject *parent = nullptr);
+    explicit SelectableModelComponent(const std::weak_ptr<AbstractPrimitive> &linked_primitive);
     virtual ~SelectableModelComponent();
 
     QWidget* getComponentWidget() const { return this->component_widget.get(); }
+    std::weak_ptr<AbstractPrimitive> getLinkedPrimitive() const { return linked_primitive; }
 
-protected:
-    QPointer<QWidget> component_widget;
 
 signals:
     void doAction(const std::shared_ptr<AbstractSchemeActionCommand> &command);

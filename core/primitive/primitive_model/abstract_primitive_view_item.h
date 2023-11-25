@@ -10,11 +10,11 @@ class AbstractPrimitive;
 
 class CORE_EXPORT AbstractPrimitiveViewItem : public SketchCADPluginInfoContainer
 {
-private:
+protected:
     std::weak_ptr<AbstractPrimitive> linked_primitive;
 
 public:
-    AbstractPrimitiveViewItem(std::weak_ptr<AbstractPrimitive> linked_primitive);
+    AbstractPrimitiveViewItem(const std::weak_ptr<AbstractPrimitive> &linked_primitive);
     virtual ~AbstractPrimitiveViewItem();
     std::weak_ptr<AbstractPrimitive> getLinkedPrimitive() const { return linked_primitive; }
 

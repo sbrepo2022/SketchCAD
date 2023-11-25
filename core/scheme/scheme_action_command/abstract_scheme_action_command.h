@@ -14,7 +14,7 @@ private:
 public:
     AbstractSchemeActionCommand();
     AbstractSchemeActionCommand(bool sequence_with_previous);
-    virtual ~AbstractSchemeActionCommand();
+    virtual ~AbstractSchemeActionCommand() = default;
 
     bool isSequenceWithPrevious() const { return sequence_with_previous; }
 

@@ -11,8 +11,3 @@ AbstractSchemeActionCommand::AbstractSchemeActionCommand(bool sequence_with_prev
 {
 
 }
-
-AbstractSchemeActionCommand::~AbstractSchemeActionCommand()
-{
-
-}

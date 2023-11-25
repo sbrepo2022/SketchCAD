@@ -27,13 +27,15 @@ class CORE_EXPORT PrimitivePropertiesComponent : public PropertiesComponent
     Q_PROPERTY(QString primitive_name MEMBER m_primitive_name NOTIFY primitiveNameChanged);
 
 private:
-    QString m_primitive_name;
+    QString m_primitive_name, m_primitive_name_old;
 
 public:
-    explicit PrimitivePropertiesComponent(QObject *parent = nullptr);
+    explicit PrimitivePropertiesComponent(const std::weak_ptr<AbstractPrimitive> &linked_primitive);
     virtual ~PrimitivePropertiesComponent();
 
     std::unique_ptr<SketchCADPluginInfo> getPluginInfo() const override;
+
+    void directSetPrimitiveName(QString primitive_name);
 
 public slots:
     void onPrimitiveNameChanged(QString primitive_name);

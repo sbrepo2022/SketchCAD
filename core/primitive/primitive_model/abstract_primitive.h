@@ -31,11 +31,12 @@ private:
     bool marked_update;
 
 protected:
-    virtual std::vector<std::weak_ptr<AbstractPrimitive>> subscribeToPrimitives() = 0; /* Returns primitives, which current primitive are subscribed to */
-    virtual std::vector<std::unique_ptr<AbstractPrimitiveViewItem>> createPrimitiveViewItems() = 0;
+    virtual std::vector<std::weak_ptr<AbstractPrimitive>> subscribeToPrimitives(); /* Returns primitives, which current primitive are subscribed to */
+    virtual std::vector<std::unique_ptr<AbstractPrimitiveViewItem>> createPrimitiveViewItems(const std::shared_ptr<AbstractPrimitive> &primitive);
+    virtual std::vector<std::unique_ptr<SelectableModelComponent>> createSelectableModelComponents(const std::shared_ptr<AbstractPrimitive> &primitive);
 
 public:
-    void initialize();
+    void initialize(const std::shared_ptr<AbstractPrimitive> &primitive);
 
     AbstractPrimitive(ID id = 0);
     virtual ~AbstractPrimitive() = default;

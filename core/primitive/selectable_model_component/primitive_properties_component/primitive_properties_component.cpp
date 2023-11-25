@@ -1,7 +1,8 @@
 #include "primitive_properties_component.h"
+#include "primitive/selectable_model_component/primitive_properties_component/primitive_name_change_action_command.h"
 
-PrimitivePropertiesComponent::PrimitivePropertiesComponent(QObject *parent)
-    : PropertiesComponent(parent)
+PrimitivePropertiesComponent::PrimitivePropertiesComponent(const std::weak_ptr<AbstractPrimitive> &linked_primitive)
+    : PropertiesComponent(linked_primitive)
 {
     QList<QMap<QString, QVariant>> widget_properties ={
         {
@@ -26,8 +27,13 @@ PrimitivePropertiesComponent::~PrimitivePropertiesComponent()
 
 }
 
+void PrimitivePropertiesComponent::directSetPrimitiveName(QString primitive_name)
+{
+    this->m_primitive_name = this->m_primitive_name_old = primitive_name;
+}
+
 void PrimitivePropertiesComponent::onPrimitiveNameChanged(QString primitive_name)
 {
-    // TODO: отправлять doAction() с изменением имени объекта
-
+    emit doAction(std::make_shared<PrimitiveComponentChangeActionCommand>(this->linked_primitive, primitive_name, this->m_primitive_name_old));
+    this->m_primitive_name_old = primitive_name;
 }

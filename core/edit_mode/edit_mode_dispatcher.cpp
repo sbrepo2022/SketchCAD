@@ -1,11 +1,32 @@
 #include "edit_mode_dispatcher.h"
+#include "plugin_system/sketch_cad_plugin_loader.h"
+#include "plugin_system/plugins_types/edit_mode_plugin.h"
 
 
 EditModeDispatcher::EditModeDispatcher() :
     QObject{nullptr},
     current_edit_mode(0)
 {
-    // TODO: Load all edit modes from plugins and connect signals/slots with edit modes
+    this->edit_modes.clear();
+    std::vector<EditModePlugin*> plugins = SketchCADPluginLoader::getInstance()->getPluginsByType<EditModePlugin>();
+    for (auto plugin : plugins)
+    {
+        std::shared_ptr<AbstractEditMode> edit_mode = std::shared_ptr<AbstractEditMode>(plugin->getEditMode());
+        this->edit_modes.insert(std::make_pair(edit_mode->getId(), edit_mode));
+        connect(edit_mode.get(), &AbstractEditMode::doAction, this, &EditModeDispatcher::doAction);
+        connect(edit_mode.get(), &AbstractEditMode::objectSelected, this, &EditModeDispatcher::objectSelected);
+    }
+}
+
+
+std::unordered_map<ID, std::shared_ptr<EditModeInfo>> EditModeDispatcher::getLoadedEditModesInfo()
+{
+    std::unordered_map<ID, std::shared_ptr<EditModeInfo>> result;
+    for (auto& pair : this->edit_modes)
+    {
+        result.insert(std::make_pair(pair.first, pair.second->getEditModeInfo()));
+    }
+    return result;
 }
 
 

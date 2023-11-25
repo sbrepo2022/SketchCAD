@@ -1,7 +1,29 @@
 #include "abstract_primitive.h"
 #include "abstract_primitive_view_item.h"
-#include "primitive/selectable_model_component/primitive_properties_component.h"
+#include "primitive/selectable_model_component/primitive_properties_component/primitive_properties_component.h"
 #include "primitive/primitive_model/primitive_plain_data.h"
+
+
+std::vector<std::weak_ptr<AbstractPrimitive>> AbstractPrimitive::subscribeToPrimitives()
+{
+    std::vector<std::weak_ptr<AbstractPrimitive>> result;
+    return result;
+}
+
+
+std::vector<std::unique_ptr<AbstractPrimitiveViewItem>> AbstractPrimitive::createPrimitiveViewItems(const std::shared_ptr<AbstractPrimitive> &primitive)
+{
+    std::vector<std::unique_ptr<AbstractPrimitiveViewItem>> result;
+    return result;
+}
+
+
+std::vector<std::unique_ptr<SelectableModelComponent>> AbstractPrimitive::createSelectableModelComponents(const std::shared_ptr<AbstractPrimitive> &primitive)
+{
+    std::vector<std::unique_ptr<SelectableModelComponent>> result;
+    result.emplace_back(std::make_unique<PrimitivePropertiesComponent>(primitive)); // inline plugin: scad_inline::PrimitivePropertiesComponentPlugin
+    return result;
+}
 
 
 AbstractPrimitive::AbstractPrimitive(ID id) :
@@ -13,10 +35,6 @@ AbstractPrimitive::AbstractPrimitive(ID id) :
     marked_remove(false),
     marked_update(true)
 {
-    this->selectable_model_components_keeper->addComponent(std::make_unique<PrimitivePropertiesComponent>()); // inline plugin: scad_inline::PrimitivePropertiesComponentPlugin
-
-    connect(this->selectable_model_components_keeper.get(), &SelectableModelComponentsKeeper::doAction, this, &AbstractPrimitive::doAction);
-
     if (id > 0)
     {
         this->id = id;
@@ -24,7 +42,7 @@ AbstractPrimitive::AbstractPrimitive(ID id) :
 }
 
 
-void AbstractPrimitive::initialize()
+void AbstractPrimitive::initialize(const std::shared_ptr<AbstractPrimitive> &primitive)
 {
     if (this->initialized) return;
     this->initialized = true;
@@ -38,10 +56,16 @@ void AbstractPrimitive::initialize()
         }
     }
 
-    auto primitive_view_items = this->createPrimitiveViewItems();
+    auto primitive_view_items = this->createPrimitiveViewItems(primitive);
     for (auto& primitive_view_item : primitive_view_items)
     {
         this->primitive_view_manager->addPrimitiveViewItem(std::move(primitive_view_item));
+    }
+
+    auto selectable_model_components = this->createSelectableModelComponents(primitive);
+    for (auto& selectable_model_component : selectable_model_components)
+    {
+        this->selectable_model_components_keeper->addComponent(std::move(selectable_model_component));
     }
 }
 

@@ -1,7 +1,7 @@
 #include "properties_component.h"
 
-PropertiesComponent::PropertiesComponent(QObject *parent)
-    : SelectableModelComponent(parent)
+PropertiesComponent::PropertiesComponent(const std::weak_ptr<AbstractPrimitive> &linked_primitive)
+    : SelectableModelComponent(linked_primitive)
 {
 
 }

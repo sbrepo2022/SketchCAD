@@ -5,16 +5,15 @@
  *
  *  std::shared_ptr<ConcretePrimitive> ConcretePrimitiveFabric::createPrimitive()
  *  {
- *      ConcretePrimitive *concrete_primitive = new ConcretePrimitive();
- *      concrete_primitive->initialize();
- *      return std::shared_ptr<ConcretePrimitive>(concrete_primitive);
+ *      std::shared_ptr<ConcretePrimitive> concrete_primitive(new ConcretePrimitive());
+ *      concrete_primitive->initialize(concrete_primitive);
+ *      return concrete_primitive;
  *  }
  *
  *
  *  std::shared_ptr<AbstractPrimitive> createUninitializedPrimitive(ID id)
  *  {
- *      ConcretePrimitive *concrete_primitive = new ConcretePrimitive(id);
- *      return std::shared_ptr<ConcretePrimitive>(concrete_primitive);
+ *      return std::make_shared<ConcretePrimitive>(id);
  *  }
 */
 
@@ -26,7 +25,7 @@ void AbstractPrimitiveFabric::initFromPlainData(
     )
 {
     primitive->fromPlainData(plain_data, serialization_context);
-    primitive->initialize();
+    primitive->initialize(primitive);
 }
 
 

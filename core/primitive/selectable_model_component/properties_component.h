@@ -14,7 +14,7 @@ class CORE_EXPORT PropertiesComponent : public SelectableModelComponent
     Q_OBJECT;
 
 public:
-    explicit PropertiesComponent(QObject *parent = nullptr);
+    explicit PropertiesComponent(const std::weak_ptr<AbstractPrimitive> &linked_primitive);
     virtual ~PropertiesComponent();
 
 protected:

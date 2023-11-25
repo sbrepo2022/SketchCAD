@@ -10,7 +10,7 @@ class CORE_EXPORT EditModeInfo
 public:
     virtual ~EditModeInfo() = default;
 
-    virtual QString getName() = 0;
+    virtual QString getTitle() = 0;
     virtual QString getDescription() = 0;
     virtual QIcon getEditModeIcon() = 0;
 };

@@ -29,6 +29,7 @@ SOURCES += \
     primitive/primitive_model/abstract_primitive_view_item.cpp \
     primitive/primitive_model/primitive_plain_data.cpp \
     primitive/primitive_model/primitive_view_items_manager.cpp \
+    primitive/selectable_model_component/primitive_properties_component/primitive_name_change_action_command.cpp \
     scheme/scheme_action_command/abstract_scheme_action_command.cpp \
     scheme/scheme_action_command/scheme_history.cpp \
     scheme/scheme_event/scheme_event.cpp \
@@ -40,7 +41,7 @@ SOURCES += \
     primitive/selectable_model_component/selectable_model_components_keeper.cpp \
     primitive/selectable_model_component/selectable_model_component.cpp \
     primitive/selectable_model_component/properties_component.cpp \
-    primitive/selectable_model_component/primitive_properties_component.cpp \
+    primitive/selectable_model_component/primitive_properties_component/primitive_properties_component.cpp \
     primitive/selectable_model_component/form_generator.cpp \
     scheme/scheme_model/schemes_dispatcher.cpp \
     scheme/scheme_serializer/abstract_scheme_serializer.cpp \
@@ -67,12 +68,13 @@ HEADERS += \
     primitive/primitive_model/abstract_primitive_view_item.h \
     primitive/primitive_model/primitive_plain_data.h \
     primitive/primitive_model/primitive_view_items_manager.h \
+    primitive/selectable_model_component/primitive_properties_component/primitive_name_change_action_command.h \
     scheme/scheme_model/scheme_transaction/scheme_transaction.h \
     scheme/scheme_model/scheme_transaction/scheme_transaction_interface.h \
     scheme/scheme_model/schemes_dispatcher.h \
     scheme/scheme_serializer/abstract_scheme_serializer.h \
     scheme/scheme_serializer/serialization_context.h \
-    scheme_action_command/abstract_scheme_action_command.h \
+    scheme/scheme_action_command/abstract_scheme_action_command.h \
     core_global.h \
     core.h \
     scheme/scheme_action_command/scheme_history.h \
@@ -83,7 +85,7 @@ HEADERS += \
     primitive/selectable_model_component/selectable_model_components_keeper.h \
     primitive/selectable_model_component/selectable_model_component.h \
     primitive/selectable_model_component/properties_component.h \
-    primitive/selectable_model_component/primitive_properties_component.h \
+    primitive/selectable_model_component/primitive_properties_component/primitive_properties_component.h \
     primitive/selectable_model_component/form_generator.h \
 
 # Default rules for deployment.

@@ -18,8 +18,8 @@ SelectableModelComponentsKeeper::~SelectableModelComponentsKeeper()
 
 void SelectableModelComponentsKeeper::addComponent(std::unique_ptr<SelectableModelComponent> &&component)
 {
-    this->selectable_model_components.emplace(component->getPluginInfo()->getFullName(), std::move(component));
     connect(component.get(), &SelectableModelComponent::doAction, this, &SelectableModelComponentsKeeper::doAction);
+    this->selectable_model_components.emplace(component->getPluginInfo()->getFullName(), std::move(component));
 }
 
 
