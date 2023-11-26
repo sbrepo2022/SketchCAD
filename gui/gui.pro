@@ -10,13 +10,16 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    tile_widget/tile_widget.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    tile_widget/tile_widget.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    tile_widget/tile_widget.ui
 
 TRANSLATIONS += \
     translate_ru_RU.ts

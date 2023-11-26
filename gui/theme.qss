@@ -204,18 +204,18 @@ QTextEdit{
 QComboBox
 {
     background-color: #fefefe;
-    border: 1px solid #1e1e1e;
-    border-radius: 0px;
+    border: 1px solid #2b579a;
+    border-radius: 2px;
     padding-left: 6px;
     color: #000;
-    height: 20px;
+    height: 24px;
 
 }
 
 
 QComboBox:on
 {
-	background-color: #fefefe;
+    background-color: #fefefe;
 
 }
 
@@ -224,7 +224,7 @@ QComboBox QAbstractItemView
 {
     background-color: #dcdcdf;
     color: #000;
-    border: 1px solid black;
+    border: 1px solid #2b579a;
     selection-background-color: #2b579a;
     selection-color: #dcdcdf;
     outline: 0;
@@ -236,10 +236,10 @@ QComboBox::drop-down
 {
     subcontrol-origin: padding;
     subcontrol-position: top right;
-    width: 15px;
+    width: 22px;
     border-left-width: 0px;
     border-left-color: darkgray;
-    border-left-style: solid; 
+    border-left-style: solid;
     border-top-right-radius: 3px; 
     border-bottom-right-radius: 3px;
 
@@ -248,10 +248,9 @@ QComboBox::drop-down
 
 QComboBox::down-arrow
 {
-	image: url("./ressources/down_arrow.png");
-	width:8px;
-	height:8px;
-
+    image: url(":/resources/icons/sort_down.png");
+    width:10px;
+    height:10px;
 }
 
 

@@ -25,6 +25,9 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
     <property name="leftMargin">
      <number>0</number>
     </property>
@@ -38,12 +41,7 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="QGraphicsView" name="graphicsView">
-      <property name="styleSheet">
-       <string notr="true">background: #fff;
-border: none;</string>
-      </property>
-     </widget>
+     <widget class="TileWidget" name="widget" native="true"/>
     </item>
    </layout>
   </widget>
@@ -187,6 +185,14 @@ border: none;</string>
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TileWidget</class>
+   <extends>QWidget</extends>
+   <header>tile_widget/tile_widget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="resources.qrc"/>
  </resources>

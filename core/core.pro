@@ -45,7 +45,8 @@ SOURCES += \
     primitive/selectable_model_component/form_generator.cpp \
     scheme/scheme_model/schemes_dispatcher.cpp \
     scheme/scheme_serializer/abstract_scheme_serializer.cpp \
-    scheme/scheme_serializer/serialization_context.cpp
+    scheme/scheme_serializer/serialization_context.cpp \
+    tile_view/abstract_tile_view.cpp
 
 HEADERS += \
     edit_mode/abstract_edit_mode.h \
@@ -87,6 +88,7 @@ HEADERS += \
     primitive/selectable_model_component/properties_component.h \
     primitive/selectable_model_component/primitive_properties_component/primitive_properties_component.h \
     primitive/selectable_model_component/form_generator.h \
+    tile_view/abstract_tile_view.h
 
 # Default rules for deployment.
 unix {

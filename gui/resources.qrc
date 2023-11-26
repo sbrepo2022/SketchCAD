@@ -9,5 +9,9 @@
         <file>resources/icons/new.png</file>
         <file>resources/icons/save_as.png</file>
         <file>resources/icons/floor_plan.png</file>
+        <file>resources/icons/close_pane.png</file>
+        <file>resources/icons/split_horizontal.png</file>
+        <file>resources/icons/split_vertical.png</file>
+        <file>resources/icons/sort_down.png</file>
     </qresource>
 </RCC>
