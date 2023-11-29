@@ -5,4 +5,8 @@ QMAKE_CFLAGS += -Wall -Wextra
 
 SUBDIRS = \
     core \
-    gui
+    gui \
+    plugins
+
+gui.depends = core
+plugins.depends = core

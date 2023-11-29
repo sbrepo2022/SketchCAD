@@ -9,9 +9,11 @@ TileWidget::TileWidget(QWidget *parent) :
     ui(new Ui::TileWidget)
 {
     this->ui->setupUi(this);
-    connect(this->ui->split_horizontal, &QPushButton::clicked, this, &TileWidget::splitHorizontal);
-    connect(this->ui->split_vertical, &QPushButton::clicked, this, &TileWidget::splitVertical);
-    connect(this->ui->close_panel, &QPushButton::clicked, this, &TileWidget::closePanel);
+    connect(this->ui->split_horizontal, &QPushButton::clicked, this, &TileWidget::onSplitHorizontal);
+    connect(this->ui->split_vertical, &QPushButton::clicked, this, &TileWidget::onSplitVertical);
+    connect(this->ui->close_panel, &QPushButton::clicked, this, &TileWidget::onClosePanel);
+    connect(this, &TileWidget::closePanel, this, &TileWidget::onClosePanel, Qt::QueuedConnection);
+    connect(this->ui->tile_type_combo_box, &QComboBox::currentIndexChanged, this, &TileWidget::onTileViewTypeIndexChanged);
 }
 
 
@@ -21,7 +23,37 @@ TileWidget::~TileWidget()
 }
 
 
-void TileWidget::splitHorizontal()
+void TileWidget::init(const std::shared_ptr<TileViewDispatcher> &tile_view_dispatcher)
+{
+    this->tile_view_dispatcher = tile_view_dispatcher;
+    connect(this, &TileWidget::tileWidgetAwaitTileView, this->tile_view_dispatcher.get(), &TileViewDispatcher::onTileWidgetAwaitTileView);
+    connect(this->tile_view_dispatcher.get(), &TileViewDispatcher::tileViewCreated, this, &TileWidget::onTileViewCreated);
+
+    std::unordered_map<ID, std::shared_ptr<TileViewInfo>> tiles_info = this->tile_view_dispatcher->getLoadedTileViewsInfo();
+    for (auto& tile_info : tiles_info)
+    {
+        std::shared_ptr<TileViewInfo> info_obj = tile_info.second;
+        this->ui->tile_type_combo_box->addItem(info_obj->getIcon(), info_obj->getTitle(), QVariant(tile_info.first));
+    }
+
+    if (tiles_info.size() > 0)
+    {
+        emit tileWidgetAwaitTileView(this->getId(), tiles_info.begin()->first);
+    }
+}
+
+
+void TileWidget::resizeEvent(QResizeEvent *event) {
+    if ((event->size().width() != event->oldSize().width() && event->size().width() == 0) ||
+        (event->size().height() != event->oldSize().height() && event->size().height() == 0)) {
+
+        emit this->closePanel();
+    }
+    QWidget::resizeEvent(event);
+}
+
+
+void TileWidget::onSplitHorizontal()
 {
     QWidget *parent_widget = this->parentWidget();
     if (!parent_widget) return;
@@ -31,15 +63,18 @@ void TileWidget::splitHorizontal()
     {
         if (parent_splitter->orientation() == Qt::Horizontal)
         {
-            QWidget *new_widget = new TileWidget(nullptr);
-            parent_splitter->addWidget(new_widget);
+            TileWidget *new_widget = new TileWidget(nullptr);
+            new_widget->init(this->tile_view_dispatcher);
+            int index = parent_splitter->indexOf(this);
+            parent_splitter->insertWidget(index + 1, new_widget);
             return;
         }
     }
 
     // Otherwise, we need to create new splitter
     QSplitter *new_splitter = new QSplitter(Qt::Horizontal, parent_widget);
-    QWidget *new_widget = new TileWidget(new_splitter);
+    TileWidget *new_widget = new TileWidget(new_splitter);
+    new_widget->init(this->tile_view_dispatcher);
 
     QWidget *splitter_container = new QWidget();
     QVBoxLayout *container_layout = new QVBoxLayout(splitter_container);
@@ -62,7 +97,7 @@ void TileWidget::splitHorizontal()
 }
 
 
-void TileWidget::splitVertical()
+void TileWidget::onSplitVertical()
 {
     QWidget *parent_widget = this->parentWidget();
     if (!parent_widget) return;
@@ -72,15 +107,18 @@ void TileWidget::splitVertical()
     {
         if (parent_splitter->orientation() == Qt::Vertical)
         {
-            QWidget *new_widget = new TileWidget(nullptr);
-            parent_splitter->addWidget(new_widget);
+            TileWidget *new_widget = new TileWidget(nullptr);
+            new_widget->init(this->tile_view_dispatcher);
+            int index = parent_splitter->indexOf(this);
+            parent_splitter->insertWidget(index + 1, new_widget);
             return;
         }
     }
 
     // Otherwise, we need to create new splitter
     QSplitter *new_splitter = new QSplitter(Qt::Vertical, parent_widget);
-    QWidget *new_widget = new TileWidget(new_splitter);
+    TileWidget *new_widget = new TileWidget(new_splitter);
+    new_widget->init(this->tile_view_dispatcher);
 
     QWidget *splitter_container = new QWidget();
     QVBoxLayout *container_layout = new QVBoxLayout(splitter_container);
@@ -103,7 +141,7 @@ void TileWidget::splitVertical()
 }
 
 
-void TileWidget::closePanel()
+void TileWidget::onClosePanel()
 {
     QWidget *parent_widget = this->parentWidget();
     if (!parent_widget) return;
@@ -143,4 +181,36 @@ void TileWidget::closePanel()
             }
         }
     }
+}
+
+
+void TileWidget::onTileViewTypeIndexChanged(int index)
+{
+    emit tileWidgetAwaitTileView(this->getId(), this->ui->tile_type_combo_box->itemData(index).toInt());
+}
+
+
+void TileWidget::onTileViewCreated(ID tile_widget_id, AbstractTileView* tile_view)
+{
+    // Check tile_widget_id
+    if (tile_widget_id != this->getId())
+        return;
+
+    if (! this->ui->content_widget)
+        return;
+
+    QLayout *layout = this->ui->content_widget->layout();
+    if (!layout)
+        return;
+
+    QLayoutItem *item;
+    while ((item = layout->takeAt(0)) != nullptr) {
+        if (QWidget *widget = item->widget()) {
+            widget->setParent(nullptr);
+            widget->deleteLater();
+        }
+    }
+
+    // Setup tile_view
+    layout->addWidget(tile_view);
 }

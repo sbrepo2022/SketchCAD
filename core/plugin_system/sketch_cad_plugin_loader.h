@@ -41,6 +41,11 @@ private:
 public:
     void loadPluginsFromDir(QString dir_path);
 
+    size_t size() const
+    {
+        return loaded_plugins.size();
+    }
+
     template<class T>
     std::vector<T*> getPluginsByType() const
     {

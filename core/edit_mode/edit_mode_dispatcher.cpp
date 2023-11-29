@@ -11,7 +11,7 @@ EditModeDispatcher::EditModeDispatcher() :
     std::vector<EditModePlugin*> plugins = SketchCADPluginLoader::getInstance()->getPluginsByType<EditModePlugin>();
     for (auto plugin : plugins)
     {
-        std::shared_ptr<AbstractEditMode> edit_mode = std::shared_ptr<AbstractEditMode>(plugin->getEditMode());
+        std::shared_ptr<AbstractEditMode> edit_mode(plugin->getEditMode());
         this->edit_modes.insert(std::make_pair(edit_mode->getId(), edit_mode));
         connect(edit_mode.get(), &AbstractEditMode::doAction, this, &EditModeDispatcher::doAction);
         connect(edit_mode.get(), &AbstractEditMode::objectSelected, this, &EditModeDispatcher::objectSelected);
@@ -25,6 +25,17 @@ std::unordered_map<ID, std::shared_ptr<EditModeInfo>> EditModeDispatcher::getLoa
     for (auto& pair : this->edit_modes)
     {
         result.insert(std::make_pair(pair.first, pair.second->getEditModeInfo()));
+    }
+    return result;
+}
+
+
+std::unordered_map<ID, std::shared_ptr<SketchCADPluginInfo>> EditModeDispatcher::getLoadedEditModesPluginsInfo()
+{
+    std::unordered_map<ID, std::shared_ptr<SketchCADPluginInfo>> result;
+    for (auto& pair : this->edit_modes)
+    {
+        result.insert(std::make_pair(pair.first, pair.second->getPluginInfo()));
     }
     return result;
 }
@@ -57,7 +68,7 @@ void EditModeDispatcher::setCurrentEditModeID(ID id)
         id = 0;
 
     this->current_edit_mode = id;
-    emit this->currentEditModeIDChanged(id);
+    emit this->currentEditModeChanged(this->edit_modes[id]);
 }
 
 

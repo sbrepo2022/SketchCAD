@@ -43,7 +43,7 @@ public slots:
     void onRecalculateConstraints(const SchemeModel &scheme_model);
 
 signals:
-    void currentSchemeIDChanged(ID id);
+    void currentSchemeChanged(const std::shared_ptr<SchemeModel> &scheme);
     void schemeEventOccured(const SchemeEvent &scheme_event, const SchemeModel &scheme_model);
     void recalculateConstraints(const SchemeModel &scheme_model);
 };

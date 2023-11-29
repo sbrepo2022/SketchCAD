@@ -62,7 +62,7 @@ void SchemesDispatcher::setCurrentSchemeID(ID id)
         id = 0;
 
     this->current_scheme_id = id;
-    emit this->currentSchemeIDChanged(id);
+    emit this->currentSchemeChanged(this->schemes[id]);
 }
 
 

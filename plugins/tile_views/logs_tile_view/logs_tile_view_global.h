@@ -1,0 +1,12 @@
+#ifndef LOGS_TILE_VIEW_GLOBAL_H
+#define LOGS_TILE_VIEW_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(LOGS_TILE_VIEW_LIBRARY)
+#  define LOGS_TILE_VIEW_EXPORT Q_DECL_EXPORT
+#else
+#  define LOGS_TILE_VIEW_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // LOGS_TILE_VIEW_GLOBAL_H

@@ -1,12 +1,13 @@
 #ifndef SKETCHCADPLUGININFO_H
 #define SKETCHCADPLUGININFO_H
 
-#include "core_global.h"
-
 #include <QtPlugin>
 #include <QString>
+#include <QJsonObject>
 
-class CORE_EXPORT SketchCADPluginInfo
+#include <optional>
+
+class SketchCADPluginInfo
 {
 public:
     virtual ~SketchCADPluginInfo() = default;
@@ -15,7 +16,14 @@ public:
     virtual int getVersion() const = 0;
     virtual QString getNamespace() const = 0;
     virtual QString getName() const = 0;
-    QString getFullName() const { return this->getNamespace() + "::" + this->getName(); }
+    QString getFullName() const
+    {
+        return this->getNamespace() + "::" + this->getName();
+    }
+    virtual std::optional<QJsonObject> getDefaultSettings() const
+    {
+        return std::nullopt;
+    }
 
     // Descriptional information
     virtual QString getAuthor() const = 0;

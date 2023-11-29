@@ -2,7 +2,13 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++20
+QMAKE_CXXFLAGS += -std=c++2b
+
+contains(CONFIG, debug) {
+    BUILD_MODE = debug
+} else {
+    BUILD_MODE = release
+}
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -17,12 +23,25 @@ HEADERS += \
     mainwindow.h \
     tile_widget/tile_widget.h
 
+LIBS += \
+    -L$$OUT_PWD/../core/$$BUILD_MODE -lcore
+
+INCLUDEPATH += \
+    $$PWD/../core
+
+DEPENDPATH += \
+    $$PWD/../core
+
 FORMS += \
     mainwindow.ui \
     tile_widget/tile_widget.ui
 
 TRANSLATIONS += \
     translate_ru_RU.ts
+
+RESOURCES += \
+    resources.qrc
+
 CONFIG += lrelease
 CONFIG += embed_translations
 
@@ -30,6 +49,3 @@ CONFIG += embed_translations
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-RESOURCES += \
-    resources.qrc

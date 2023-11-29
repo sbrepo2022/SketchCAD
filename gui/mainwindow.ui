@@ -24,24 +24,29 @@
    </size>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">#centralwidget {
+	background-color: #eeeeff;
+}</string>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="spacing">
-     <number>0</number>
+     <number>6</number>
     </property>
     <property name="leftMargin">
-     <number>0</number>
+     <number>6</number>
     </property>
     <property name="topMargin">
-     <number>0</number>
+     <number>6</number>
     </property>
     <property name="rightMargin">
-     <number>0</number>
+     <number>6</number>
     </property>
     <property name="bottomMargin">
-     <number>0</number>
+     <number>6</number>
     </property>
     <item>
-     <widget class="TileWidget" name="widget" native="true"/>
+     <widget class="TileWidget" name="central_tile_widget" native="true"/>
     </item>
    </layout>
   </widget>
@@ -80,9 +85,9 @@
    <addaction name="menuEdit"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QToolBar" name="toolBarMain">
+  <widget class="QToolBar" name="toolBarDocuments">
    <property name="windowTitle">
-    <string>toolBar</string>
+    <string>Tool bar documents</string>
    </property>
    <property name="iconSize">
     <size>
@@ -102,9 +107,9 @@
    <addaction name="actionSaveAs"/>
    <addaction name="actionClose_current"/>
   </widget>
-  <widget class="QToolBar" name="toolBarDocument">
+  <widget class="QToolBar" name="toolBarSchemeActions">
    <property name="windowTitle">
-    <string>toolBar_2</string>
+    <string>Tool bar scheme actions</string>
    </property>
    <property name="iconSize">
     <size>
@@ -129,6 +134,15 @@
    <property name="text">
     <string>Create</string>
    </property>
+   <property name="toolTip">
+    <string>Create</string>
+   </property>
+   <property name="statusTip">
+    <string>Create scheme</string>
+   </property>
+   <property name="whatsThis">
+    <string>Action, which creates new scheme.</string>
+   </property>
   </action>
   <action name="actionOpen">
    <property name="icon">
@@ -137,6 +151,12 @@
    </property>
    <property name="text">
     <string>Open</string>
+   </property>
+   <property name="statusTip">
+    <string>Open scheme</string>
+   </property>
+   <property name="whatsThis">
+    <string>Action, which opens scheme from file.</string>
    </property>
   </action>
   <action name="actionSave">
@@ -147,6 +167,12 @@
    <property name="text">
     <string>Save</string>
    </property>
+   <property name="statusTip">
+    <string>Save scheme</string>
+   </property>
+   <property name="whatsThis">
+    <string>Action, which saves scheme.</string>
+   </property>
   </action>
   <action name="actionSaveAs">
    <property name="icon">
@@ -155,6 +181,12 @@
    </property>
    <property name="text">
     <string>Save as</string>
+   </property>
+   <property name="statusTip">
+    <string>Save scheme as</string>
+   </property>
+   <property name="whatsThis">
+    <string>Action, which save schemes with new filename.</string>
    </property>
   </action>
   <action name="actionClose_current">
@@ -165,6 +197,12 @@
    <property name="text">
     <string>Close</string>
    </property>
+   <property name="statusTip">
+    <string>Close scheme</string>
+   </property>
+   <property name="whatsThis">
+    <string>Action, which closes current scheme.</string>
+   </property>
   </action>
   <action name="actionUndoCommand">
    <property name="icon">
@@ -174,14 +212,32 @@
    <property name="text">
     <string>Undo</string>
    </property>
+   <property name="statusTip">
+    <string>Undo last action</string>
+   </property>
+   <property name="whatsThis">
+    <string>Undo last scheme action.</string>
+   </property>
   </action>
   <action name="actionRedoCommand">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="resources.qrc">
      <normaloff>:/resources/icons/redo.png</normaloff>:/resources/icons/redo.png</iconset>
    </property>
    <property name="text">
     <string>Redo</string>
+   </property>
+   <property name="statusTip">
+    <string>Redo last action</string>
+   </property>
+   <property name="whatsThis">
+    <string>Redo last scheme action.</string>
    </property>
   </action>
  </widget>

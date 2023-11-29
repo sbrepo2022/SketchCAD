@@ -17,7 +17,7 @@ PrimitivePropertiesComponent::PrimitivePropertiesComponent(const std::weak_ptr<A
 }
 
 
-std::unique_ptr<SketchCADPluginInfo> PrimitivePropertiesComponent::getPluginInfo() const
+std::shared_ptr<SketchCADPluginInfo> PrimitivePropertiesComponent::getPluginInfo() const
 {
     return std::make_unique<PrimitivePropertiesComponentPluginInfo>();
 }

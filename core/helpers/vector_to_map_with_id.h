@@ -5,6 +5,7 @@
 
 #include <unordered_map>
 #include <vector>
+#include <concepts>
 
 template<class T>
 concept has_getId = requires(T t) {

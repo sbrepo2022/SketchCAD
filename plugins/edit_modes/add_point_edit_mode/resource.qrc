@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/add_point.png</file>
+    </qresource>
+</RCC>

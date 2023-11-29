@@ -85,24 +85,12 @@ QWidget {
           <height>0</height>
          </size>
         </property>
-        <item>
-         <property name="text">
-          <string>Scheme</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../resources.qrc">
-           <normaloff>:/resources/icons/floor_plan.png</normaloff>:/resources/icons/floor_plan.png</iconset>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>List</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../resources.qrc">
-           <normaloff>:/resources/icons/open.png</normaloff>:/resources/icons/open.png</iconset>
-         </property>
-        </item>
+        <property name="iconSize">
+         <size>
+          <width>16</width>
+          <height>16</height>
+         </size>
+        </property>
        </widget>
       </item>
       <item>
@@ -202,10 +190,29 @@ QWidget {
       </sizepolicy>
      </property>
      <property name="styleSheet">
-      <string notr="true">QWidget {
+      <string notr="true">#content_widget {
 	background: #fff;
+	border: 1px solid lightgray;
+	border-radius: 2px;
 }</string>
      </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+     </layout>
     </widget>
    </item>
   </layout>

@@ -21,7 +21,7 @@ class CORE_EXPORT PrimitivePropertiesComponentPluginInfo : public SketchCADPlugi
 };
 
 
-class CORE_EXPORT PrimitivePropertiesComponent : public PropertiesComponent
+class  PrimitivePropertiesComponent : public PropertiesComponent
 {
     Q_OBJECT;
     Q_PROPERTY(QString primitive_name MEMBER m_primitive_name NOTIFY primitiveNameChanged);
@@ -33,7 +33,7 @@ public:
     explicit PrimitivePropertiesComponent(const std::weak_ptr<AbstractPrimitive> &linked_primitive);
     virtual ~PrimitivePropertiesComponent();
 
-    std::unique_ptr<SketchCADPluginInfo> getPluginInfo() const override;
+    std::shared_ptr<SketchCADPluginInfo> getPluginInfo() const override;
 
     void directSetPrimitiveName(QString primitive_name);
 

@@ -22,6 +22,7 @@ private:
 public:
     EditModeDispatcher();
     std::unordered_map<ID, std::shared_ptr<EditModeInfo>> getLoadedEditModesInfo();
+    std::unordered_map<ID, std::shared_ptr<SketchCADPluginInfo>> getLoadedEditModesPluginsInfo();
 
     std::shared_ptr<AbstractEditMode> getEditMode(ID id);
 
@@ -34,7 +35,7 @@ public slots:
 
 
 signals:
-    void currentEditModeIDChanged(ID id);
+    void currentEditModeChanged(const std::shared_ptr<AbstractEditMode> &edit_mode);
     void doAction(const std::shared_ptr<AbstractSchemeActionCommand> &command);
     void objectSelected(SelectableModelComponentsKeeper *selectable_model_components_keeper);
 };

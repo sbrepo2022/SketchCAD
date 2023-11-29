@@ -4,22 +4,27 @@ QT += widgets
 TEMPLATE = lib
 DEFINES += CORE_LIBRARY
 
-CONFIG += c++20 static_lib
+QMAKE_CXXFLAGS += -std=c++2b
+
+CONFIG += static_lib
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
     edit_mode/abstract_edit_mode.cpp \
     edit_mode/edit_mode_dispatcher.cpp \
     edit_mode/edit_mode_info.cpp \
+    edit_mode/edit_mode_plugin_info_container.cpp \
+    logs_keeper/sketch_cad_logs_keeper.cpp \
     plugin_system/abstract_sketch_cad_plugin.cpp \
     plugin_system/plugins_types/edit_mode_plugin.cpp \
     plugin_system/plugins_types/primitive_plugin.cpp \
     plugin_system/plugins_types/primitive_view_item_plugin.cpp \
     plugin_system/plugins_types/scheme_view_model_plugin.cpp \
     plugin_system/plugins_types/selectable_model_component_plugin.cpp \
+    plugin_system/plugins_types/tile_view_plugin.cpp \
     plugin_system/sketch_cad_plugin_info.cpp \
     plugin_system/sketch_cad_plugin_info_container.cpp \
     plugin_system/sketch_cad_plugin_loader.cpp \
@@ -46,20 +51,28 @@ SOURCES += \
     scheme/scheme_model/schemes_dispatcher.cpp \
     scheme/scheme_serializer/abstract_scheme_serializer.cpp \
     scheme/scheme_serializer/serialization_context.cpp \
-    tile_view/abstract_tile_view.cpp
+    settings_config/sketch_cad_settings_config.cpp \
+    tile_view/abstract_tile_view.cpp \
+    tile_view/abstract_tile_view_fabric.cpp \
+    tile_view/tile_view_dispatcher.cpp \
+    tile_view/tile_view_info.cpp \
+    tile_view/tile_view_plugin_info_container.cpp
 
 HEADERS += \
     edit_mode/abstract_edit_mode.h \
     edit_mode/edit_mode_dispatcher.h \
     edit_mode/edit_mode_info.h \
+    edit_mode/edit_mode_plugin_info_container.h \
     helpers/id_counter.h \
     helpers/vector_to_map_with_id.h \
+    logs_keeper/sketch_cad_logs_keeper.h \
     plugin_system/abstract_sketch_cad_plugin.h \
     plugin_system/plugins_types/edit_mode_plugin.h \
     plugin_system/plugins_types/primitive_plugin.h \
     plugin_system/plugins_types/primitive_view_item_plugin.h \
     plugin_system/plugins_types/scheme_view_model_plugin.h \
     plugin_system/plugins_types/selectable_model_component_plugin.h \
+    plugin_system/plugins_types/tile_view_plugin.h \
     plugin_system/sketch_cad_plugin_info.h \
     plugin_system/sketch_cad_plugin_info_container.h \
     plugin_system/sketch_cad_plugin_loader.h \
@@ -88,7 +101,12 @@ HEADERS += \
     primitive/selectable_model_component/properties_component.h \
     primitive/selectable_model_component/primitive_properties_component/primitive_properties_component.h \
     primitive/selectable_model_component/form_generator.h \
-    tile_view/abstract_tile_view.h
+    settings_config/sketch_cad_settings_config.h \
+    tile_view/abstract_tile_view.h \
+    tile_view/abstract_tile_view_fabric.h \
+    tile_view/tile_view_dispatcher.h \
+    tile_view/tile_view_info.h \
+    tile_view/tile_view_plugin_info_container.h
 
 # Default rules for deployment.
 unix {
