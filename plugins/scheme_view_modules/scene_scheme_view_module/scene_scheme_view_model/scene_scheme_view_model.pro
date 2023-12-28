@@ -1,7 +1,7 @@
 QT += widgets
 
 TEMPLATE = lib
-DEFINES += ADDPOINTEDITMODE_LIBRARY
+DEFINES += SCENE_SCHEME_VIEW_MODEL_LIBRARY
 
 QMAKE_CXXFLAGS += -std=c++2b
 
@@ -18,34 +18,31 @@ CONFIG += plugin
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    add_point_edit_mode.cpp
+    scene_scheme_view_model.cpp
 
 HEADERS += \
-    add_point_edit_mode.h \
-    add_point_edit_mode_global.h
+    scene_scheme_view_model_global.h \
+    scene_scheme_view_model.h
 
 LIBS += \
-    -L$$OUT_PWD/../../../core/$$BUILD_MODE -lcore
+    -L$$OUT_PWD/../../../../core/$$BUILD_MODE -lcore
 
 INCLUDEPATH += \
-    $$PWD/../../../core
+    $$PWD/../../../../core
 
 DEPENDPATH += \
-    $$PWD/../../../core
+    $$PWD/../../../../core
 
 # Default rules for deployment.
-mytarget.commands += $${QMAKE_MKDIR} $$shell_path($$OUT_PWD/../../../gui/$$BUILD_MODE/plugins)
-target.path = $$OUT_PWD/../../../gui/$$BUILD_MODE/plugins
+mytarget.commands += $${QMAKE_MKDIR} $$shell_path($$OUT_PWD/../../../../gui/$$BUILD_MODE/plugins)
+target.path = $$OUT_PWD/../../../../gui/$$BUILD_MODE/plugins
 unix {
-    target.files = $$OUT_PWD/$$BUILD_MODE/add_point_edit_mode.so
+    target.files = $$OUT_PWD/$$BUILD_MODE/scene_scheme_view_model.so
 }
 win32 {
-    target.files = $$OUT_PWD/$$BUILD_MODE/add_point_edit_mode.dll
+    target.files = $$OUT_PWD/$$BUILD_MODE/scene_scheme_view_model.dll
 }
 !isEmpty(target.path): INSTALLS += target
 
 QMAKE_POST_LINK += $(MAKE) install
-
-RESOURCES += \
-    resource.qrc
 

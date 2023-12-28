@@ -4,7 +4,6 @@ QMAKE_CXXFLAGS += -Wall -Wextra
 QMAKE_CFLAGS += -Wall -Wextra
 
 SUBDIRS = \
-    logs_tile_view
+    add_point_edit_mode \
+    point_primitive_lib
 
-
-gui.depends = core

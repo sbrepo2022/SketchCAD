@@ -4,6 +4,6 @@ QMAKE_CXXFLAGS += -Wall -Wextra
 QMAKE_CFLAGS += -Wall -Wextra
 
 SUBDIRS = \
-    edit_modes \
-    tile_views
-
+    tile_views \
+    primitive_modules \
+    scheme_view_modules

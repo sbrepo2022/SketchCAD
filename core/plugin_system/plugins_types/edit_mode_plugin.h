@@ -4,7 +4,7 @@
 #include "plugin_system/abstract_sketch_cad_plugin.h"
 #include "edit_mode/abstract_edit_mode.h"
 
-class  EditModePlugin : public AbstractSketchCADPlugin, public EditModePluginInfoContainer
+class EditModePlugin : public AbstractSketchCADPlugin, public EditModePluginInfoContainer
 {
 public:
     virtual ~EditModePlugin() = default;

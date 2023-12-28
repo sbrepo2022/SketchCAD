@@ -22,6 +22,7 @@ SOURCES += \
     plugin_system/plugins_types/edit_mode_plugin.cpp \
     plugin_system/plugins_types/primitive_plugin.cpp \
     plugin_system/plugins_types/primitive_view_item_plugin.cpp \
+    plugin_system/plugins_types/scheme_action_command_plugin.cpp \
     plugin_system/plugins_types/scheme_view_model_plugin.cpp \
     plugin_system/plugins_types/selectable_model_component_plugin.cpp \
     plugin_system/plugins_types/tile_view_plugin.cpp \
@@ -36,6 +37,7 @@ SOURCES += \
     primitive/primitive_model/primitive_view_items_manager.cpp \
     primitive/selectable_model_component/primitive_properties_component/primitive_name_change_action_command.cpp \
     scheme/scheme_action_command/abstract_scheme_action_command.cpp \
+    scheme/scheme_action_command/abstract_scheme_action_command_fabric.cpp \
     scheme/scheme_action_command/scheme_history.cpp \
     scheme/scheme_event/scheme_event.cpp \
     scheme/scheme_model/abstract_scheme_view_model.cpp \
@@ -70,6 +72,7 @@ HEADERS += \
     plugin_system/plugins_types/edit_mode_plugin.h \
     plugin_system/plugins_types/primitive_plugin.h \
     plugin_system/plugins_types/primitive_view_item_plugin.h \
+    plugin_system/plugins_types/scheme_action_command_plugin.h \
     plugin_system/plugins_types/scheme_view_model_plugin.h \
     plugin_system/plugins_types/selectable_model_component_plugin.h \
     plugin_system/plugins_types/tile_view_plugin.h \
@@ -83,6 +86,7 @@ HEADERS += \
     primitive/primitive_model/primitive_plain_data.h \
     primitive/primitive_model/primitive_view_items_manager.h \
     primitive/selectable_model_component/primitive_properties_component/primitive_name_change_action_command.h \
+    scheme/scheme_action_command/abstract_scheme_action_command_fabric.h \
     scheme/scheme_model/scheme_transaction/scheme_transaction.h \
     scheme/scheme_model/scheme_transaction/scheme_transaction_interface.h \
     scheme/scheme_model/schemes_dispatcher.h \

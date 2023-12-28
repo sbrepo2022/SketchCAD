@@ -4,7 +4,7 @@
 #include "plugin_system/abstract_sketch_cad_plugin.h"
 #include "primitive/primitive_model/abstract_primitive_fabric.h"
 
-class  PrimitivePlugin : public AbstractSketchCADPlugin
+class PrimitivePlugin : public AbstractSketchCADPlugin
 {
 public:
     virtual ~PrimitivePlugin() = default;

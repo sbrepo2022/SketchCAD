@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SchemeTileView</class>
- <widget class="QWidget" name="SchemeTileView">
+ <class>SceneSchemeTileView</class>
+ <widget class="QWidget" name="SceneSchemeTileView">
   <property name="geometry">
    <rect>
     <x>0</x>

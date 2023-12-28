@@ -11,12 +11,12 @@
 class CORE_EXPORT PrimitiveComponentChangeActionCommand : public AbstractSchemeActionCommand
 {
 private:
-    const std::weak_ptr<AbstractPrimitive> &linked_primitive;
+    ID linked_primitive_id;
     QString old_name;
     QString new_name;
 
 public:
-    PrimitiveComponentChangeActionCommand(const std::weak_ptr<AbstractPrimitive> &linked_primitive, QString old_name, QString new_name);
+    PrimitiveComponentChangeActionCommand(ID linked_primitive_id, QString old_name, QString new_name);
     virtual ~PrimitiveComponentChangeActionCommand() = default;
 
     virtual void doAction(const SchemeModel &scheme_model);

@@ -1,7 +1,7 @@
 QT += widgets
 
 TEMPLATE = lib
-DEFINES += SCHEMETILEVIEW_LIBRARY
+DEFINES += SCENE_SCHEME_TILE_VIEW_LIBRARY
 
 QMAKE_CXXFLAGS += -std=c++2b
 
@@ -18,32 +18,32 @@ CONFIG += plugin
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    scheme_tile_view.cpp
+    scene_scheme_tile_view.cpp
 
 HEADERS += \
-    scheme_tile_view.h \
-    scheme_tile_view_global.h
+    scene_scheme_tile_view_global.h \
+    scene_scheme_tile_view.h
 
 LIBS += \
-    -L$$OUT_PWD/../../../core/$$BUILD_MODE -lcore
+    -L$$OUT_PWD/../../../../core/$$BUILD_MODE -lcore
 
 INCLUDEPATH += \
-    $$PWD/../../../core
+    $$PWD/../../../../core
 
 DEPENDPATH += \
-    $$PWD/../../../core
+    $$PWD/../../../../core
 
 FORMS += \
-    scheme_tile_view.ui
+    scene_scheme_tile_view.ui
 
 # Default rules for deployment.
-mytarget.commands += $${QMAKE_MKDIR} $$shell_path($$OUT_PWD/../../../gui/$$BUILD_MODE/plugins)
-target.path = $$OUT_PWD/../../../gui/$$BUILD_MODE/plugins
+mytarget.commands += $${QMAKE_MKDIR} $$shell_path($$OUT_PWD/../../../../gui/$$BUILD_MODE/plugins)
+target.path = $$OUT_PWD/../../../../gui/$$BUILD_MODE/plugins
 unix {
-    target.files = $$OUT_PWD/$$BUILD_MODE/scheme_tile_view.so
+    target.files = $$OUT_PWD/$$BUILD_MODE/scene_scheme_tile_view.so
 }
 win32 {
-    target.files = $$OUT_PWD/$$BUILD_MODE/scheme_tile_view.dll
+    target.files = $$OUT_PWD/$$BUILD_MODE/scene_scheme_tile_view.dll
 }
 !isEmpty(target.path): INSTALLS += target
 

@@ -2,9 +2,9 @@
 #include "primitive/primitive_model/abstract_primitive.h"
 #include "primitive/selectable_model_component/primitive_properties_component/primitive_properties_component.h"
 
-PrimitiveComponentChangeActionCommand::PrimitiveComponentChangeActionCommand(const std::weak_ptr<AbstractPrimitive> &linked_primitive, QString old_name, QString new_name) :
+PrimitiveComponentChangeActionCommand::PrimitiveComponentChangeActionCommand(ID linked_primitive_id, QString old_name, QString new_name) :
     AbstractSchemeActionCommand(),
-    linked_primitive(linked_primitive),
+    linked_primitive_id(linked_primitive_id),
     old_name(old_name),
     new_name(new_name)
 {
@@ -14,7 +14,7 @@ PrimitiveComponentChangeActionCommand::PrimitiveComponentChangeActionCommand(con
 
 void PrimitiveComponentChangeActionCommand::doAction(const SchemeModel &scheme_model)
 {
-    if (auto primitive = this->linked_primitive.lock())
+    if (auto primitive = scheme_model.getPrimitive(this->linked_primitive_id))
     {
         primitive->getPrimitiveViewItemsManager()->updatePrimitiveViewItems();
     }
@@ -24,7 +24,7 @@ void PrimitiveComponentChangeActionCommand::doAction(const SchemeModel &scheme_m
 
 void PrimitiveComponentChangeActionCommand::undoAction(const SchemeModel &scheme_model)
 {
-    if (auto primitive = this->linked_primitive.lock())
+    if (auto primitive = scheme_model.getPrimitive(this->linked_primitive_id))
     {
         std::vector<PrimitivePropertiesComponent*> components = primitive->getSelectableModelComponentsKeeper()->getComponentsByType<PrimitivePropertiesComponent>();
         for (auto component : components)
@@ -39,7 +39,7 @@ void PrimitiveComponentChangeActionCommand::undoAction(const SchemeModel &scheme
 
 void PrimitiveComponentChangeActionCommand::redoAction(const SchemeModel &scheme_model)
 {
-    if (auto primitive = this->linked_primitive.lock())
+    if (auto primitive = scheme_model.getPrimitive(this->linked_primitive_id))
     {
         std::vector<PrimitivePropertiesComponent*> components = primitive->getSelectableModelComponentsKeeper()->getComponentsByType<PrimitivePropertiesComponent>();
         for (auto component : components)

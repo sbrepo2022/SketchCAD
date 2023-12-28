@@ -40,8 +40,8 @@ public:
     std::unordered_map<ID, std::shared_ptr<const AbstractConstraint>> getConstraints() const;
     std::vector<ID> getPrimitivesIDs() const;
     std::vector<ID> getConstraintsIDs() const;
-    std::shared_ptr<const AbstractPrimitive> getPrimitive(ID id) const;
-    std::shared_ptr<const AbstractConstraint> getConstraint(ID id) const;
+    std::shared_ptr<AbstractPrimitive> getPrimitive(ID id) const;
+    std::shared_ptr<AbstractConstraint> getConstraint(ID id) const;
 
     SchemeViewModelsManager* getSchemeViewModelsManager();
 

@@ -34,6 +34,9 @@ void PrimitivePropertiesComponent::directSetPrimitiveName(QString primitive_name
 
 void PrimitivePropertiesComponent::onPrimitiveNameChanged(QString primitive_name)
 {
-    emit doAction(std::make_shared<PrimitiveComponentChangeActionCommand>(this->linked_primitive, primitive_name, this->m_primitive_name_old));
-    this->m_primitive_name_old = primitive_name;
+    if (auto linked_primitive_lock = this->linked_primitive.lock())
+    {
+        emit doAction(std::make_shared<PrimitiveComponentChangeActionCommand>(linked_primitive_lock->getId(), primitive_name, this->m_primitive_name_old));
+        this->m_primitive_name_old = primitive_name;
+    }
 }

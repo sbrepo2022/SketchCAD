@@ -161,13 +161,13 @@ std::vector<ID> SchemeModel::getConstraintsIDs() const
 }
 
 
-std::shared_ptr<const AbstractPrimitive> SchemeModel::getPrimitive(ID id) const
+std::shared_ptr<AbstractPrimitive> SchemeModel::getPrimitive(ID id) const
 {
     return primitives.at(id);
 }
 
 
-std::shared_ptr<const AbstractConstraint> SchemeModel::getConstraint(ID id) const
+std::shared_ptr<AbstractConstraint> SchemeModel::getConstraint(ID id) const
 {
     return constraints.at(id);
 }
