@@ -25,18 +25,24 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 include($$PWD/../../point_primitive_lib/point_primitive_lib.pri)
 
 SOURCES += \
-    point_scene_view_item.cpp
+    point_scene_view_item_plugin.cpp
 
 HEADERS += \
-    point_scene_view_item.h \
-    point_scene_view_item_global.h
+    point_scene_view_item_global.h \
+    point_scene_view_item_plugin.h
+
+LIBS += \
+    -L$$OUT_PWD/../../../../../core/$$BUILD_MODE -lcore
+
+INCLUDEPATH += \
+    $$PWD/../../../../../core
+
+DEPENDPATH += \
+    $$PWD/../../../../../core
 
 # Default rules for deployment.
 target.path = $$OUT_PWD/../../../../../gui/$$BUILD_MODE/plugins
 INSTALLS += target
 
 QMAKE_POST_LINK += $(MAKE) install
-
-RESOURCES += \
-    resource.qrc
 

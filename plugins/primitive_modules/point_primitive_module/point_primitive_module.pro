@@ -9,7 +9,7 @@ QMAKE_CXXFLAGS += -std=c++17
 SUBDIRS = \
     add_point_edit_mode \
     point_primitive \
-    point_selectable_model_component \
+    point_properties_component \
     primitive_view_items \
     point_primitive_lib
 

@@ -1,4 +1,4 @@
-#include "add_point_edit_mode.h"
+#include "add_point_edit_mode_plugin.h"
 
 void AddPointEditMode::onSchemeEventOccured(const std::shared_ptr<SchemeEvent> &scheme_event, const SchemeModel &scheme_model)
 {

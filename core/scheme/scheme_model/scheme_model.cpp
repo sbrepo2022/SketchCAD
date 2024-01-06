@@ -31,7 +31,7 @@ void SchemeModel::removePrimitive(ID id)
 }
 
 
-void SchemeModel::updatePrimitives(ID id)
+void SchemeModel::updatePrimitive(ID id)
 {
     // Start update propogation
     auto it = this->primitives.find(id);
@@ -181,7 +181,7 @@ SchemeViewModelsManager* SchemeModel::getSchemeViewModelsManager()
 }
 
 
-SchemeTransaction SchemeModel::createTransaction()
+SchemeTransaction SchemeModel::createTransaction() const
 {
     return SchemeTransaction(this);
 }

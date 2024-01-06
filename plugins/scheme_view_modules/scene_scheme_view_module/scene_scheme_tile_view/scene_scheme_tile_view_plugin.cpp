@@ -1,4 +1,4 @@
-#include "scene_scheme_tile_view.h"
+#include "scene_scheme_tile_view_plugin.h"
 #include "scene_scheme_view_model_lib.h"
 #include "ui_scene_scheme_tile_view.h"
 

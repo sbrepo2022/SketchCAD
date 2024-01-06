@@ -25,11 +25,11 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 include($$PWD/../scene_scheme_view_module_lib/scene_scheme_view_module_lib.pri)
 
 SOURCES += \
-    scene_scheme_tile_view.cpp
+    scene_scheme_tile_view_plugin.cpp
 
 HEADERS += \
     scene_scheme_tile_view_global.h \
-    scene_scheme_tile_view.h
+    scene_scheme_tile_view_plugin.h
 
 FORMS += \
     scene_scheme_tile_view.ui

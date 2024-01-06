@@ -8,7 +8,7 @@ class PrimitivePlugin : public AbstractSketchCADPlugin
 {
 public:
     virtual ~PrimitivePlugin() = default;
-    virtual AbstractPrimitiveFabric* getPrimitiveFabric() = 0;
+    virtual AbstractPrimitiveFabric* getPrimitiveFabric() const = 0;
 };
 
 #endif // PRIMITIVEPLUGIN_H

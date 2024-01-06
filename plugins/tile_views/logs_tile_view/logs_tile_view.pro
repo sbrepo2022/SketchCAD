@@ -23,11 +23,11 @@ CONFIG += plugin
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    logs_tile_view.cpp
+    logs_tile_view_plugin.cpp
 
 HEADERS += \
     logs_tile_view_global.h \
-    logs_tile_view.h
+    logs_tile_view_plugin.h
 
 LIBS += \
     -L$$OUT_PWD/../../../core/$$BUILD_MODE -lcore

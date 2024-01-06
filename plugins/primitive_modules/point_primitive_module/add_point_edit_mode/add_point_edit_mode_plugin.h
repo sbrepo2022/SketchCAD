@@ -1,5 +1,5 @@
-#ifndef ADDPOINTEDITMODE_H
-#define ADDPOINTEDITMODE_H
+#ifndef ADD_POINT_EDIT_MODE_PLUGIN_H
+#define ADD_POINT_EDIT_MODE_PLUGIN_H
 
 #include "add_point_edit_mode_global.h"
 #include "plugin_system/plugins_types/edit_mode_plugin.h"
@@ -8,7 +8,7 @@
 #include <memory>
 
 
-class ADDPOINTEDITMODE_EXPORT AddPointEditModeInfo : public EditModeInfo
+class ADD_POINT_EDIT_MODE_EXPORT AddPointEditModeInfo : public EditModeInfo
 {
     virtual QString getTitle() { return "Add point"; }
     virtual QString getDescription() { return "Add point tool"; }
@@ -18,7 +18,7 @@ class ADDPOINTEDITMODE_EXPORT AddPointEditModeInfo : public EditModeInfo
 
 
 
-class ADDPOINTEDITMODE_EXPORT AddPointEditModePluginInfo : public SketchCADPluginInfo
+class ADD_POINT_EDIT_MODE_EXPORT AddPointEditModePluginInfo : public SketchCADPluginInfo
 {
     virtual int getVersion() const override { return 1; }
     virtual QString getNamespace() const override { return "scad_default"; }
@@ -39,7 +39,7 @@ class ADDPOINTEDITMODE_EXPORT AddPointEditModePluginInfo : public SketchCADPlugi
 
 
 
-class ADDPOINTEDITMODE_EXPORT AddPointEditMode : public AbstractEditMode
+class ADD_POINT_EDIT_MODE_EXPORT AddPointEditMode : public AbstractEditMode
 {
     Q_OBJECT
 
@@ -52,7 +52,7 @@ public:
 
 
 
-class ADDPOINTEDITMODE_EXPORT AddPointEditModePlugin : public QObject, public EditModePlugin
+class ADD_POINT_EDIT_MODE_EXPORT AddPointEditModePlugin : public QObject, public EditModePlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "scad_basic::AbstractSketchCADPlugin/1.0")
@@ -65,4 +65,4 @@ public:
 
 };
 
-#endif // ADDPOINTEDITMODE_H
+#endif // ADD_POINT_EDIT_MODE_PLUGIN_H

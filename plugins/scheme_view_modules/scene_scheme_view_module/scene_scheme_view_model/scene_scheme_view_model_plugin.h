@@ -1,5 +1,5 @@
-#ifndef SCENE_SCHEME_VIEW_MODEL_H
-#define SCENE_SCHEME_VIEW_MODEL_H
+#ifndef SCENE_SCHEME_VIEW_MODEL_PLUGIN_H
+#define SCENE_SCHEME_VIEW_MODEL_PLUGIN_H
 
 #include "scene_scheme_view_model_global.h"
 
@@ -18,4 +18,4 @@ public:
     virtual std::shared_ptr<SketchCADPluginInfo> getPluginInfo() const override { return std::make_shared<SceneSchemeViewModelPluginInfo>(); }
 };
 
-#endif // SCENE_SCHEME_VIEW_MODEL_H
+#endif // SCENE_SCHEME_VIEW_MODEL_PLUGIN_H

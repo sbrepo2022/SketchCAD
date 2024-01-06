@@ -33,6 +33,8 @@ SOURCES += \
     primitive/primitive_model/abstract_primitive_fabric.cpp \
     primitive/primitive_model/abstract_primitive_view_item.cpp \
     primitive/primitive_model/primitive_plain_data.cpp \
+    primitive/primitive_model/primitive_view_item_info.cpp \
+    primitive/primitive_model/primitive_view_item_info_container.cpp \
     primitive/primitive_model/primitive_view_items_manager.cpp \
     primitive/selectable_model_component/primitive_properties_component/primitive_name_change_action_command.cpp \
     scheme/scheme_action_command/abstract_scheme_action_command.cpp \
@@ -83,6 +85,8 @@ HEADERS += \
     primitive/primitive_model/abstract_primitive_fabric.h \
     primitive/primitive_model/abstract_primitive_view_item.h \
     primitive/primitive_model/primitive_plain_data.h \
+    primitive/primitive_model/primitive_view_item_info.h \
+    primitive/primitive_model/primitive_view_item_info_container.h \
     primitive/primitive_model/primitive_view_items_manager.h \
     primitive/selectable_model_component/primitive_properties_component/primitive_name_change_action_command.h \
     scheme/scheme_action_command/abstract_scheme_action_command_fabric.h \

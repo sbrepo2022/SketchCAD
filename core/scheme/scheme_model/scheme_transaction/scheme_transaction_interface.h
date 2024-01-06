@@ -11,7 +11,7 @@ public:
     virtual void addPrimitive(const std::shared_ptr<AbstractPrimitive> &primitive) = 0;
     virtual void addConstraint(const std::shared_ptr<AbstractConstraint> &constraint) = 0;
     virtual void removePrimitive(ID id) = 0;
-    virtual void updatePrimitives(ID id) = 0;
+    virtual void updatePrimitive(ID id) = 0;
 
     virtual bool applyTransaction() = 0;
 };

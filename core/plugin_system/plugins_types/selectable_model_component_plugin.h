@@ -8,7 +8,7 @@ class SelectableModelComponentPlugin : public AbstractSketchCADPlugin
 {
 public:
     virtual ~SelectableModelComponentPlugin() = default;
-    virtual SelectableModelComponent* getSelectableModelComponent() = 0;
+    virtual SelectableModelComponent* getSelectableModelComponent(const std::weak_ptr<AbstractPrimitive> &linked_primitive) const = 0;
 };
 
 #endif // SELECTABLEMODELCOMPONENTPLUGIN_H

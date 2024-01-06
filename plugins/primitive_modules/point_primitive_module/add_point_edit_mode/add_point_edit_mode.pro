@@ -1,7 +1,7 @@
 QT += widgets
 
 TEMPLATE = lib
-DEFINES += ADDPOINTEDITMODE_LIBRARY
+DEFINES += ADD_POINT_EDIT_MODE_LIBRARY
 
 CONFIG += c++17
 QMAKE_CXXFLAGS += -std=c++17
@@ -25,11 +25,11 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 include($$PWD/../point_primitive_lib/point_primitive_lib.pri)
 
 SOURCES += \
-    add_point_edit_mode.cpp
+    add_point_edit_mode_plugin.cpp
 
 HEADERS += \
-    add_point_edit_mode.h \
-    add_point_edit_mode_global.h
+    add_point_edit_mode_global.h \
+    add_point_edit_mode_plugin.h
 
 # Default rules for deployment.
 target.path = $$OUT_PWD/../../../../gui/$$BUILD_MODE/plugins

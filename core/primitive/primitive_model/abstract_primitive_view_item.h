@@ -3,12 +3,13 @@
 
 #include "core_global.h"
 #include "plugin_system/sketch_cad_plugin_info_container.h"
+#include "primitive/primitive_model/primitive_view_item_info_container.h"
 
 #include <memory>
 
 class AbstractPrimitive;
 
-class CORE_EXPORT AbstractPrimitiveViewItem : public SketchCADPluginInfoContainer
+class CORE_EXPORT AbstractPrimitiveViewItem : public SketchCADPluginInfoContainer, public PrimitiveViewItemInfoContainer
 {
 protected:
     std::weak_ptr<AbstractPrimitive> linked_primitive;

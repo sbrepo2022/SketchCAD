@@ -35,6 +35,7 @@ public:
 
     std::shared_ptr<SketchCADPluginInfo> getPluginInfo() const override;
 
+    QString getPrimitiveName();
     void directSetPrimitiveName(QString primitive_name);
 
 public slots:

@@ -9,6 +9,7 @@
 class AbstractPrimitiveSceneViewItem : public AbstractPrimitiveViewItem
 {
 public:
+    AbstractPrimitiveSceneViewItem(const std::weak_ptr<AbstractPrimitive> &linked_primitive);
     virtual QGraphicsItem* getGraphicsItem() = 0;
 };
 

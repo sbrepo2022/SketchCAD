@@ -1,3 +1,13 @@
+contains(CONFIG, debug) {
+    BUILD_MODE = debug
+} else {
+    BUILD_MODE = release
+}
+
+unix {
+    BUILD_MODE = .
+}
+
 DEFINES += SCENE_SCHEME_VIEW_MODULE_LIB_LIBRARY
 
 SOURCES += \

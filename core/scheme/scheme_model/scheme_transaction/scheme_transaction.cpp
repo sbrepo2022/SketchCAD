@@ -1,7 +1,7 @@
 #include "scheme_transaction.h"
 
-SchemeTransaction::SchemeTransaction(SchemeTransactionInterface *apply_to) :
-    apply_to(apply_to)
+SchemeTransaction::SchemeTransaction(const SchemeTransactionInterface *apply_to) :
+    apply_to(const_cast<SchemeTransactionInterface*>(apply_to))
 {
 
 }
@@ -10,7 +10,7 @@ SchemeTransaction::SchemeTransaction(SchemeTransactionInterface *apply_to) :
 void SchemeTransaction::addPrimitive(const std::shared_ptr<AbstractPrimitive> &primitive)
 {
     this->primitives_to_add.push_back(primitive);
-    this->updatePrimitives(primitive->getId());
+    this->updatePrimitive(primitive->getId());
 }
 
 
@@ -18,7 +18,7 @@ void SchemeTransaction::addConstraint(const std::shared_ptr<AbstractConstraint> 
 {
     this->addPrimitive(constraint);
     this->constraints_to_add.push_back(constraint);
-    this->updatePrimitives(constraint->getId());
+    this->updatePrimitive(constraint->getId());
 }
 
 
@@ -28,7 +28,7 @@ void SchemeTransaction::removePrimitive(ID id)
 }
 
 
-void SchemeTransaction::updatePrimitives(ID id)
+void SchemeTransaction::updatePrimitive(ID id)
 {
     this->primitives_to_update.push_back(id);
 }
@@ -56,7 +56,7 @@ bool SchemeTransaction::applyTransaction()
 
     for (ID id : this->primitives_to_update)
     {
-        this->apply_to->updatePrimitives(id);
+        this->apply_to->updatePrimitive(id);
     }
 
     return this->apply_to->applyTransaction();

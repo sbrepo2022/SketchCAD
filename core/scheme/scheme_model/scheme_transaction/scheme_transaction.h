@@ -9,7 +9,7 @@
 class CORE_EXPORT SchemeTransaction : public SchemeTransactionInterface
 {
 private:
-    SchemeTransactionInterface *apply_to;
+    SchemeTransactionInterface* apply_to;
 
     std::vector<std::shared_ptr<AbstractPrimitive>> primitives_to_add;
     std::vector<std::shared_ptr<AbstractConstraint>> constraints_to_add;
@@ -19,12 +19,12 @@ private:
 public:
     static SchemeTransaction empty() { return SchemeTransaction(nullptr); }
 
-    SchemeTransaction(SchemeTransactionInterface *apply_to);
+    SchemeTransaction(const SchemeTransactionInterface *apply_to);
 
     void addPrimitive(const std::shared_ptr<AbstractPrimitive> &primitive) override;
     void addConstraint(const std::shared_ptr<AbstractConstraint> &constraint) override;
     void removePrimitive(ID id) override;
-    void updatePrimitives(ID id) override;
+    void updatePrimitive(ID id) override;
 
     bool applyTransaction() override;
 

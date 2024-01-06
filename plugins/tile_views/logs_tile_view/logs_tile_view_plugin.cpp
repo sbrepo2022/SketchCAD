@@ -1,4 +1,4 @@
-#include "logs_tile_view.h"
+#include "logs_tile_view_plugin.h"
 #include "ui_logs_tile_view.h"
 
 #include <deque>

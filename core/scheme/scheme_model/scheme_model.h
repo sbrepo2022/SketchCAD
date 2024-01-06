@@ -28,7 +28,7 @@ private:
     void addPrimitive(const std::shared_ptr<AbstractPrimitive> &primitive) override;
     void addConstraint(const std::shared_ptr<AbstractConstraint> &constraint) override;
     void removePrimitive(ID id) override;
-    void updatePrimitives(ID id) override;
+    void updatePrimitive(ID id) override;
 
     bool applyTransaction() override;
 
@@ -47,7 +47,7 @@ public:
 
     SchemeViewModelsManager* getSchemeViewModelsManager();
 
-    SchemeTransaction createTransaction();
+    SchemeTransaction createTransaction() const;
 
 public slots:
     void onDoAction(const std::shared_ptr<AbstractSchemeActionCommand> &command) const;

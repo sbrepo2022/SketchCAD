@@ -22,15 +22,24 @@ std::shared_ptr<SketchCADPluginInfo> PrimitivePropertiesComponent::getPluginInfo
     return std::make_unique<PrimitivePropertiesComponentPluginInfo>();
 }
 
+
 PrimitivePropertiesComponent::~PrimitivePropertiesComponent()
 {
 
 }
 
+
+QString PrimitivePropertiesComponent::getPrimitiveName()
+{
+    return this->m_primitive_name;
+}
+
+
 void PrimitivePropertiesComponent::directSetPrimitiveName(QString primitive_name)
 {
     this->m_primitive_name = this->m_primitive_name_old = primitive_name;
 }
+
 
 void PrimitivePropertiesComponent::onPrimitiveNameChanged(QString primitive_name)
 {

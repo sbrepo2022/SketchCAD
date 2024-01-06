@@ -1,5 +1,5 @@
-#ifndef SCENE_SCHEME_TILE_VIEW_H
-#define SCENE_SCHEME_TILE_VIEW_H
+#ifndef SCENE_SCHEME_TILE_VIEW_PLUGIN_H
+#define SCENE_SCHEME_TILE_VIEW_PLUGIN_H
 
 #include "scene_scheme_tile_view_global.h"
 #include "plugin_system/plugins_types/tile_view_plugin.h"
@@ -86,4 +86,4 @@ public:
 
 };
 
-#endif // SCENE_SCHEME_TILE_VIEW_H
+#endif // SCENE_SCHEME_TILE_VIEW_PLUGIN_H
