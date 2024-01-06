@@ -5,17 +5,10 @@
 
 #include <unordered_map>
 #include <vector>
-#include <concepts>
-
-template<class T>
-concept has_getId = requires(T t) {
-    { t->getId() } -> std::same_as<ID>;
-};
 
 namespace helpers
 {
-
-template<has_getId T>
+template<class T>
 std::unordered_map<ID, T> vector_to_map_with_id(const std::vector<T> &v)
 {
     std::unordered_map<ID, T> m;
@@ -26,8 +19,7 @@ std::unordered_map<ID, T> vector_to_map_with_id(const std::vector<T> &v)
     return m;
 }
 
-
-template<has_getId T>
+template<class T>
 std::vector<T> map_with_id_to_vector(const std::unordered_map<ID, T> &m)
 {
     std::vector<ID, T> v;

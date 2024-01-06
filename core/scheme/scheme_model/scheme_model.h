@@ -19,6 +19,7 @@ class CORE_EXPORT SchemeModel : public QObject, public IdCounterT<SchemeModel>, 
     Q_OBJECT
 
 private:
+    QString scheme_name;
     mutable SchemeHistory scheme_history;
     std::unordered_map<ID, std::shared_ptr<AbstractPrimitive>> primitives;
     std::unordered_map<ID, std::shared_ptr<AbstractConstraint>> constraints;
@@ -36,6 +37,7 @@ private:
 public:
     explicit SchemeModel();
 
+    QString getSchemeName() { return this->scheme_name; }
     std::unordered_map<ID, std::shared_ptr<const AbstractPrimitive>> getPrimitives() const;
     std::unordered_map<ID, std::shared_ptr<const AbstractConstraint>> getConstraints() const;
     std::vector<ID> getPrimitivesIDs() const;
@@ -53,7 +55,7 @@ public slots:
     void onRedoLastAction() const;
 
 signals:
-    void schemeEventOccured(const SchemeEvent &scheme_event, const SchemeModel &scheme_model);
+    void schemeEventOccured(const std::shared_ptr<SchemeEvent> &scheme_event, const SchemeModel &scheme_model);
     void recalculateConstraints(const SchemeModel &scheme_model);
 };
 

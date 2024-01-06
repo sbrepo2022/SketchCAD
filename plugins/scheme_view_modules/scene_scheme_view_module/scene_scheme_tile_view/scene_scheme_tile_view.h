@@ -53,6 +53,7 @@ private:
 public:
     explicit SceneSchemeTileView(QWidget *parent = nullptr);
 
+    virtual void onCurrentSchemeChanged(const std::shared_ptr<SchemeModel> &scheme);
 };
 
 
@@ -63,7 +64,7 @@ class SCENE_SCHEME_TILE_VIEW_EXPORT SceneSchemeTileViewFabric : public AbstractT
     Q_OBJECT
 
 public:
-    virtual AbstractTileView* createTileView() override { return new SceneSchemeTileView; }
+    virtual AbstractTileView* createTileView() override;
 
     virtual std::shared_ptr<TileViewInfo> getTileViewInfo() const override { return std::make_shared<SceneSchemeTileViewInfo>(); }
     virtual std::shared_ptr<SketchCADPluginInfo> getPluginInfo() const override { return std::make_shared<SceneSchemeTileViewPluginInfo>(); }

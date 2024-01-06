@@ -20,7 +20,7 @@ public:
 
 
 public slots:
-    virtual void onSchemeEventOccured(const SchemeEvent &scheme_event, const SchemeModel &scheme_model) = 0;
+    virtual void onSchemeEventOccured(const std::shared_ptr<SchemeEvent> &scheme_event, const SchemeModel &scheme_model) = 0;
 
 
 signals:

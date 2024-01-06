@@ -3,12 +3,17 @@ QT += widgets
 TEMPLATE = lib
 DEFINES += LOGS_TILE_VIEW_LIBRARY
 
-QMAKE_CXXFLAGS += -std=c++2b
+CONFIG += c++17
+QMAKE_CXXFLAGS += -std=c++17
 
 contains(CONFIG, debug) {
     BUILD_MODE = debug
 } else {
     BUILD_MODE = release
+}
+
+unix {
+    BUILD_MODE = .
 }
 
 CONFIG += plugin
@@ -37,17 +42,11 @@ FORMS += \
     logs_tile_view.ui
 
 # Default rules for deployment.
-mytarget.commands += $${QMAKE_MKDIR} $$shell_path($$OUT_PWD/../../../gui/$$BUILD_MODE/plugins)
 target.path = $$OUT_PWD/../../../gui/$$BUILD_MODE/plugins
-unix {
-    target.files = $$OUT_PWD/$$BUILD_MODE/logs_tile_view.so
-}
-win32 {
-    target.files = $$OUT_PWD/$$BUILD_MODE/logs_tile_view.dll
-}
-!isEmpty(target.path): INSTALLS += target
+INSTALLS += target
 
 QMAKE_POST_LINK += $(MAKE) install
+
 
 RESOURCES += \
     resources.qrc

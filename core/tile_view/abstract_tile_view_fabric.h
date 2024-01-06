@@ -12,15 +12,34 @@ class CORE_EXPORT AbstractTileViewFabric : public QObject, public IdCounterT<Abs
 {
     Q_OBJECT
 
+protected:
+    virtual void makeConnections(AbstractTileView* tile_view);
+
 public:
     AbstractTileViewFabric();
     virtual ~AbstractTileViewFabric() = default;
     virtual AbstractTileView* createTileView() = 0;
 
 public slots:
-    virtual void onCurrentSchemeChanged(const std::shared_ptr<SchemeModel> &scheme) {}
-    virtual void onCurrentEditModeChanged(const std::shared_ptr<AbstractEditMode> &edit_mode) {}
-    virtual void onObjectSelected(SelectableModelComponentsKeeper *selectable_model_components_keeper) {}
+    virtual void onCurrentSchemeChanged(const std::shared_ptr<SchemeModel> &scheme)
+    {
+        emit currentSchemeChanged(scheme);
+    }
+
+    virtual void onCurrentEditModeChanged(const std::shared_ptr<AbstractEditMode> &edit_mode)
+    {
+        emit currentEditModeChanged(edit_mode);
+    }
+
+    virtual void onObjectSelected(SelectableModelComponentsKeeper *selectable_model_components_keeper)
+    {
+        emit objectSelected(selectable_model_components_keeper);
+    }
+
+signals:
+    void currentSchemeChanged(const std::shared_ptr<SchemeModel> &scheme);
+    void currentEditModeChanged(const std::shared_ptr<AbstractEditMode> &edit_mode);
+    void objectSelected(SelectableModelComponentsKeeper *selectable_model_components_keeper);
 };
 
 #endif // ABSTRACTTILEVIEWFABRIC_H

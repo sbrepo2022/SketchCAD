@@ -15,6 +15,12 @@ EditModeDispatcher::EditModeDispatcher() :
         this->edit_modes.insert(std::make_pair(edit_mode->getId(), edit_mode));
         connect(edit_mode.get(), &AbstractEditMode::doAction, this, &EditModeDispatcher::doAction);
         connect(edit_mode.get(), &AbstractEditMode::objectSelected, this, &EditModeDispatcher::objectSelected);
+
+        // Set first edit mode active
+        if (this->edit_modes.size() == 1)
+        {
+            this->setCurrentEditModeID(edit_mode->getId());
+        }
     }
 }
 
@@ -64,16 +70,21 @@ ID EditModeDispatcher::getCurrentEditModeID()
 void EditModeDispatcher::setCurrentEditModeID(ID id)
 {
     auto it = this->edit_modes.find(id);
-    if (it != this->edit_modes.end())
-        id = 0;
+    if (it == this->edit_modes.end())
+    {
+        this->current_edit_mode = 0;
+        emit this->currentEditModeChanged(nullptr);
+        return;
+    }
 
     this->current_edit_mode = id;
     emit this->currentEditModeChanged(this->edit_modes[id]);
 }
 
 
-void EditModeDispatcher::onSchemeEventOccured(const SchemeEvent &scheme_event, const SchemeModel &scheme_model)
+void EditModeDispatcher::onSchemeEventOccured(const std::shared_ptr<SchemeEvent> &scheme_event, const SchemeModel &scheme_model)
 {
     std::shared_ptr<AbstractEditMode> edit_mode = this->getEditMode(this->getCurrentEditModeID());
-    edit_mode->onSchemeEventOccured(scheme_event, scheme_model);
+    if (edit_mode != nullptr)
+        edit_mode->onSchemeEventOccured(scheme_event, scheme_model);
 }

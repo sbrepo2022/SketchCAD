@@ -4,9 +4,8 @@ QT += widgets
 TEMPLATE = lib
 DEFINES += CORE_LIBRARY
 
-QMAKE_CXXFLAGS += -std=c++2b
-
-CONFIG += static_lib
+CONFIG += c++17
+QMAKE_CXXFLAGS += -std=c++17
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.

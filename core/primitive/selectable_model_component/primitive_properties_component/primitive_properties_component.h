@@ -21,7 +21,7 @@ class CORE_EXPORT PrimitivePropertiesComponentPluginInfo : public SketchCADPlugi
 };
 
 
-class  PrimitivePropertiesComponent : public PropertiesComponent
+class PrimitivePropertiesComponent : public PropertiesComponent
 {
     Q_OBJECT;
     Q_PROPERTY(QString primitive_name MEMBER m_primitive_name NOTIFY primitiveNameChanged);

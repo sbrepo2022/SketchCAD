@@ -39,12 +39,12 @@ public slots:
     void onRedoLastAction();
 
     // From SchemeModel, resend signals only if they are from current scheme model
-    void onSchemeEventOccured(const SchemeEvent &scheme_event, const SchemeModel &scheme_model);
+    void onSchemeEventOccured(const std::shared_ptr<SchemeEvent> &scheme_event, const SchemeModel &scheme_model);
     void onRecalculateConstraints(const SchemeModel &scheme_model);
 
 signals:
     void currentSchemeChanged(const std::shared_ptr<SchemeModel> &scheme);
-    void schemeEventOccured(const SchemeEvent &scheme_event, const SchemeModel &scheme_model);
+    void schemeEventOccured(const std::shared_ptr<SchemeEvent> &scheme_event, const SchemeModel &scheme_model);
     void recalculateConstraints(const SchemeModel &scheme_model);
 };
 

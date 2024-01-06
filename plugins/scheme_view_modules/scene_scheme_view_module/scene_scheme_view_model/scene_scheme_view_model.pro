@@ -3,7 +3,8 @@ QT += widgets
 TEMPLATE = lib
 DEFINES += SCENE_SCHEME_VIEW_MODEL_LIBRARY
 
-QMAKE_CXXFLAGS += -std=c++2b
+CONFIG += c++17
+QMAKE_CXXFLAGS += -std=c++17
 
 contains(CONFIG, debug) {
     BUILD_MODE = debug
@@ -11,11 +12,17 @@ contains(CONFIG, debug) {
     BUILD_MODE = release
 }
 
+unix {
+    BUILD_MODE = .
+}
+
 CONFIG += plugin
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+
+include($$PWD/../scene_scheme_view_module_lib/scene_scheme_view_module_lib.pri)
 
 SOURCES += \
     scene_scheme_view_model.cpp
@@ -34,15 +41,8 @@ DEPENDPATH += \
     $$PWD/../../../../core
 
 # Default rules for deployment.
-mytarget.commands += $${QMAKE_MKDIR} $$shell_path($$OUT_PWD/../../../../gui/$$BUILD_MODE/plugins)
 target.path = $$OUT_PWD/../../../../gui/$$BUILD_MODE/plugins
-unix {
-    target.files = $$OUT_PWD/$$BUILD_MODE/scene_scheme_view_model.so
-}
-win32 {
-    target.files = $$OUT_PWD/$$BUILD_MODE/scene_scheme_view_model.dll
-}
-!isEmpty(target.path): INSTALLS += target
+INSTALLS += target
 
 QMAKE_POST_LINK += $(MAKE) install
 

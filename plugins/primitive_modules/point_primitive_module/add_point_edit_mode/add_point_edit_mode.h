@@ -44,7 +44,7 @@ class ADDPOINTEDITMODE_EXPORT AddPointEditMode : public AbstractEditMode
     Q_OBJECT
 
 public:
-    virtual void onSchemeEventOccured(const SchemeEvent &scheme_event, const SchemeModel &scheme_model) override;
+    virtual void onSchemeEventOccured(const std::shared_ptr<SchemeEvent> &scheme_event, const SchemeModel &scheme_model) override;
 
     virtual std::shared_ptr<EditModeInfo> getEditModeInfo() const override { return std::make_shared<AddPointEditModeInfo>(); }
     virtual std::shared_ptr<SketchCADPluginInfo> getPluginInfo() const override { return std::make_shared<AddPointEditModePluginInfo>(); }

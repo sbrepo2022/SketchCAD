@@ -22,12 +22,12 @@ public slots:
         Q_UNUSED(scheme)
     }
 
-    virtual void currentEditModeChanged(const std::shared_ptr<AbstractEditMode> &edit_mode)
+    virtual void onCurrentEditModeChanged(const std::shared_ptr<AbstractEditMode> &edit_mode)
     {
         Q_UNUSED(edit_mode)
     }
 
-    virtual void objectSelected(SelectableModelComponentsKeeper *selectable_model_components_keeper)
+    virtual void onObjectSelected(SelectableModelComponentsKeeper *selectable_model_components_keeper)
     {
         Q_UNUSED(selectable_model_components_keeper)
     }

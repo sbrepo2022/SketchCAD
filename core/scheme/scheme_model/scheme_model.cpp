@@ -129,8 +129,10 @@ bool SchemeModel::applyTransaction()
 SchemeModel::SchemeModel()
     : QObject{nullptr}
 {
+    this->scheme_name = QString("New scheme #%1").arg(this->getId());
+
     this->scheme_view_models_manager = std::make_unique<SchemeViewModelsManager>();
-    connect(this->scheme_view_models_manager.get(), &SchemeViewModelsManager::schemeEventOccured, this, [this](const SchemeEvent &scheme_event) {
+    connect(this->scheme_view_models_manager.get(), &SchemeViewModelsManager::schemeEventOccured, this, [this](const std::shared_ptr<SchemeEvent> &scheme_event) {
         emit this->schemeEventOccured(scheme_event, *this);
     });
 }

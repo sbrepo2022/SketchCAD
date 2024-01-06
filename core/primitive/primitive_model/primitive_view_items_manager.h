@@ -28,7 +28,7 @@ public:
             T* ptr = dynamic_cast<T*>(this->primitive_view_items[i].get());
             if (ptr != nullptr)
             {
-                result.push_back();
+                result.push_back(ptr);
             }
         }
 

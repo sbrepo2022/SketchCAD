@@ -17,21 +17,16 @@ ID SchemesDispatcher::createScheme()
     connect(new_scheme.get(), &SchemeModel::schemeEventOccured, this, &SchemesDispatcher::onSchemeEventOccured);
     connect(new_scheme.get(), &SchemeModel::recalculateConstraints, this, &SchemesDispatcher::onRecalculateConstraints);
 
-    if (schemes.size() == 1){
-        this->setCurrentSchemeID(id);
-    }
-
     return id;
 }
 
 
 void SchemesDispatcher::removeScheme(ID id)
 {
-    this->schemes.erase(id);
+    if (this->schemes.find(id) == this->schemes.end())
+        return;
 
-    if (schemes.size() == 0){
-        this->setCurrentSchemeID(0);
-    }
+    this->schemes.erase(id);
 }
 
 
@@ -58,7 +53,7 @@ ID SchemesDispatcher::getCurrentSchemeID()
 void SchemesDispatcher::setCurrentSchemeID(ID id)
 {
     auto it = this->schemes.find(id);
-    if (it != this->schemes.end())
+    if (it == this->schemes.end())
         id = 0;
 
     this->current_scheme_id = id;
@@ -111,7 +106,7 @@ void SchemesDispatcher::onRedoLastAction()
 }
 
 
-void SchemesDispatcher::onSchemeEventOccured(const SchemeEvent &scheme_event, const SchemeModel &scheme_model)
+void SchemesDispatcher::onSchemeEventOccured(const std::shared_ptr<SchemeEvent> &scheme_event, const SchemeModel &scheme_model)
 {
     if (scheme_model.getId() == this->getCurrentSchemeID())
         emit this->schemeEventOccured(scheme_event, scheme_model);

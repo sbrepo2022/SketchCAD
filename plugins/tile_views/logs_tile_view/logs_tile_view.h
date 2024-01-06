@@ -50,6 +50,8 @@ class LOGS_TILE_VIEW_EXPORT LogsTileView : public AbstractTileView
 
 private:
     Ui::LogsTileView *ui;
+    QString getStyledLogMessage(const LogMessage &log_message);
+    void updateLogOutputView();
 
 public:
     explicit LogsTileView(QWidget *parent = nullptr);
@@ -66,7 +68,7 @@ class LOGS_TILE_VIEW_EXPORT LogsTileViewFabric : public AbstractTileViewFabric
     Q_OBJECT
 
 public:
-    virtual AbstractTileView* createTileView() override { return new LogsTileView; }
+    virtual AbstractTileView* createTileView() override;
 
     virtual std::shared_ptr<TileViewInfo> getTileViewInfo() const override { return std::make_shared<LogsTileViewInfo>(); }
     virtual std::shared_ptr<SketchCADPluginInfo> getPluginInfo() const override { return std::make_shared<LogsTileViewPluginInfo>(); }

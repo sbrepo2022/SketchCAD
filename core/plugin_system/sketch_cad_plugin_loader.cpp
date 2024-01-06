@@ -18,7 +18,7 @@ void SketchCADPluginLoader::loadPluginsFromDir(QString dir_path)
         }
 
         AbstractSketchCADPlugin *plugin = qobject_cast<AbstractSketchCADPlugin*>(plugin_obj);
-        if (! plugin_obj)
+        if (! plugin)
         {
             qWarning() << QString("Cannot cast plugin '%1' to AbstractSketchCADPlugin").arg(plugins_dir.absoluteFilePath(filename));
             continue;

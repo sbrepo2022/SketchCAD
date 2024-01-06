@@ -8,7 +8,7 @@ class SchemeViewModelPlugin : public AbstractSketchCADPlugin
 {
 public:
     virtual ~SchemeViewModelPlugin() = default;
-    virtual AbstractSchemeViewModel* getSchemeViewModel() = 0;
+    virtual AbstractSchemeViewModel* getSchemeViewModel() const = 0;
 };
 
 #endif // SCHEMEVIEWMODELPLUGIN_H

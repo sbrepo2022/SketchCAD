@@ -46,7 +46,7 @@ public slots:
     void detachPrimitive(const std::shared_ptr<AbstractPrimitive> &primitive);
 
 signals:
-    void schemeEventOccured(const SchemeEvent &scheme_event);
+    void schemeEventOccured(const std::shared_ptr<SchemeEvent> &scheme_event);
     void doAction(const std::shared_ptr<AbstractSchemeActionCommand> &command);
 };
 

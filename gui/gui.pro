@@ -2,12 +2,17 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-QMAKE_CXXFLAGS += -std=c++2b
+CONFIG += c++17
+QMAKE_CXXFLAGS += -std=c++17
 
 contains(CONFIG, debug) {
     BUILD_MODE = debug
 } else {
     BUILD_MODE = release
+}
+
+unix {
+    BUILD_MODE = .
 }
 
 # You can make your code fail to compile if it uses deprecated APIs.

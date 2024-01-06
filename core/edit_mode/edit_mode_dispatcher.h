@@ -31,7 +31,7 @@ public:
 
 
 public slots:
-    void onSchemeEventOccured(const SchemeEvent &scheme_event, const SchemeModel &scheme_model);
+    void onSchemeEventOccured(const std::shared_ptr<SchemeEvent> &scheme_event, const SchemeModel &scheme_model);
 
 
 signals:
